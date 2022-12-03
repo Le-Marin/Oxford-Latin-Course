@@ -1,0 +1,122 @@
+:root {
+  --fg: #222;
+  --bg: #fff;
+  --tip-bg: #eee;
+  --tip-bdc: #888;
+  --word-fg: royalblue;
+  --word-selected-fg: mediumblue;
+  --note-fg: brown;
+  --heading-fg: #444;
+  --heading-bdc: #bbb;
+}
+body {
+  font-family: Arial, sans-serif;
+  font-size: 1.2rem;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--fg);
+  background: var(--bg);
+}
+center {
+  margin: -1.5em 0;
+}
+.container {
+  max-width: 50em;
+  padding: .5em;
+  margin: auto;
+}
+h1 {
+  margin: 0;
+  padding: .4em .5rem;
+  position: sticky;
+  top: 0;
+  color: var(--heading-fg);
+  background: var(--bg);
+  border-bottom: 1px solid var(--heading-bdc);
+  z-index: 2;
+}
+.text {
+  line-height: 1.5;
+  padding: .5rem;
+  margin-top: 1em;
+  text-align: justify;
+  white-space: pre-wrap;
+}
+[contenteditable="true"] {
+  outline: 2px solid var(--fg);
+}
+[contenteditable="true"]:focus {
+  outline-color: cornflowerblue;
+}
+.word {
+  color: var(--word-fg);
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+.word:hover {
+  color: var(--word-selected-fg);
+}
+.word > * {
+  pointer-events: none;
+}
+#s {
+  position: relative;
+}
+#c {
+  font-size: 1em;
+  width: 1.4em;
+  height: 1.2em;
+  padding: 0 2px;
+  border: 1px solid gray;
+}
+
+#tip {
+  max-width: 20em;
+  position: absolute;
+  left: 0; top: 0;
+  padding: .2em .5em;
+  background-color: var(--tip-bg);
+  border: 2px solid var(--tip-bdc);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.35);
+  transform: translate(var(--x), var(--y));
+  pointer-events: none;
+  user-select: none;
+}
+#tip:empty {
+  display: none;
+}
+#tip > strong {
+  color: var(--word-fg);
+}
+.notes {
+  margin-left: .5em;
+  color: var(--note-fg);
+}
+.notes > i {
+  font-style: normal;
+  color: var(--fg);
+}
+.translation {
+  font-family: Consolas, monospace;
+  font-size: .75em;
+  margin-left: .5em;
+  opacity: .85;
+}
+#tip > strong:empty + span {
+  margin-left: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --fg: #eee;
+    --bg: #222;
+    --tip-bg: #1a1a1a;
+    --tip-bdc: #444;
+    --word-fg: darkseagreen;
+    --word-selected-fg: palegreen;
+    --note-fg: #d55038;
+    --heading-fg: #e5d2b9;
+    --heading-bdc: #3a3a3a;
+  }
+}
