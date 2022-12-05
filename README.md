@@ -8,3 +8,4 @@
 [Capitulum 5](https://le-marin.github.io/Oxford-Latin-Course/cap-5.html)  
 [Capitulum 6](https://le-marin.github.io/Oxford-Latin-Course/cap-6.html)  
 [Capitulum 7](https://le-marin.github.io/Oxford-Latin-Course/cap-7.html)
+[Capitulum 8](https://le-marin.github.io/Oxford-Latin-Course/cap-8.html)
