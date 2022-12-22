@@ -9,6 +9,9 @@
   --heading-fg: #444;
   --heading-bdc: #bbb;
 }
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: Arial, sans-serif;
   font-size: 1.2rem;
@@ -17,15 +20,12 @@ body {
   color: var(--fg);
   background: var(--bg);
 }
-center {
-  margin: -1.5em 0;
-}
 .container {
   max-width: 50em;
   padding: .5em;
   margin: auto;
 }
-h1 {
+.container > h1 {
   margin: 0;
   padding: .4em .5rem;
   position: sticky;
@@ -35,6 +35,12 @@ h1 {
   border-bottom: 1px solid var(--heading-bdc);
   z-index: 2;
 }
+[contenteditable="true"] {
+  outline: 2px solid var(--fg);
+}
+[contenteditable="true"]:focus {
+  outline-color: cornflowerblue;
+}
 .text {
   line-height: 1.5;
   padding: .5rem;
@@ -42,32 +48,22 @@ h1 {
   text-align: justify;
   white-space: pre-wrap;
 }
-[contenteditable="true"] {
-  outline: 2px solid var(--fg);
+.editor {
+  white-space: normal;
 }
-[contenteditable="true"]:focus {
-  outline-color: cornflowerblue;
+center {
+  margin: -1.5em 0;
 }
 .word {
-  color: var(--word-fg);
+  color: var(--word-fg) !important;
   pointer-events: auto !important;
   cursor: pointer;
 }
 .word:hover {
-  color: var(--word-selected-fg);
+  color: var(--word-selected-fg) !important;
 }
 .word > * {
   pointer-events: none;
-}
-#s {
-  position: relative;
-}
-#c {
-  font-size: 1em;
-  width: 1.4em;
-  height: 1.2em;
-  padding: 0 2px;
-  border: 1px solid gray;
 }
 
 #tip {
@@ -99,6 +95,7 @@ h1 {
 .translation {
   font-family: Consolas, monospace;
   font-size: .75em;
+  vertical-align: middle;
   margin-left: .5em;
   opacity: .85;
 }
@@ -109,7 +106,7 @@ h1 {
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --fg: #eee;
+    --fg: #eaeaea;
     --bg: #222;
     --tip-bg: #1a1a1a;
     --tip-bdc: #444;
@@ -118,5 +115,8 @@ h1 {
     --note-fg: #d55038;
     --heading-fg: #e5d2b9;
     --heading-bdc: #3a3a3a;
+  }
+  b, strong {
+    color: #fff;
   }
 }

@@ -1,6 +1,14 @@
 (function() {
   'use strict';
 
+  if (location.protocol === 'file:') {
+    const script = document.createElement('script');
+    script.src = 'edit.js';
+    document.head.appendChild(script);
+  }
+
+  const getClientWidth = () => document.documentElement.clientWidth;
+
   const wordReplacer = match => `<strong>${match}</strong>`;
 
   const notesReplacer = match => {
@@ -16,8 +24,6 @@
   };
 
   const tip = ((elem) => {
-    const getClientWidth = () => document.documentElement.clientWidth;
-
     return {
       get hidden() {
         return !elem.offsetWidth;
@@ -38,15 +44,17 @@
     };
   })(document.getElementById('tip'));
 
+  document.addEventListener('click', onTipFocus);
+  document.addEventListener('mouseover', onTipFocus);
+
   function onTipFocus(e) {
     const trg = e.target;
-    const text = trg.matches('.word') ? trg.dataset.value : '';
+    const text = trg.matches('.word')
+      ? trg.dataset.value.replace(/^&/, trg.textContent)
+      : '';
 
     if (text) return tip.render(text).move(trg.getBoundingClientRect());
 
     !tip.hidden && tip.render('');
   }
-
-  document.addEventListener('click', onTipFocus);
-  document.addEventListener('mouseover', onTipFocus);
 })();
