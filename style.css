@@ -76,7 +76,8 @@ center {
 }
 
 #tip {
-  max-width: 20em;
+  max-width: 16.5em;
+  max-width: min(20em, 92vw);
   line-height: 1.2;
   position: absolute;
   left: 0;

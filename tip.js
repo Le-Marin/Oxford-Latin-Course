@@ -26,7 +26,7 @@
         const offset = 5;
         const w = elem.offsetWidth;
         const h = elem.offsetHeight + offset;
-        const x = left + w >= getClientWidth() - offset ? right - w : left;
+        const x = left + w >= getClientWidth() ? Math.max(2, right - w) : left;
         const y = bottom + h >= window.innerHeight ? top - h : bottom + offset;
         elem.style.setProperty('--x', `${~~x}px`);
         elem.style.setProperty('--y', `${y + window.scrollY >> 0}px`);
