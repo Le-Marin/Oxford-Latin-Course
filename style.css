@@ -8,6 +8,10 @@
   --note-fg: brown;
   --heading-fg: #444;
   --heading-bdc: #bbb;
+  --prompt-bg: #eee;
+  --nav-link-fg: #2f4d6b;
+  --nav-btn-fg: #3a3a3a;
+  --nav-btn-bg: #ddd;
 }
 * {
   box-sizing: border-box;
@@ -35,10 +39,10 @@ body {
   border-bottom: 1px solid var(--heading-bdc);
   z-index: 2;
 }
-[contenteditable="true"] {
+[contenteditable] {
   outline: 2px solid var(--fg);
 }
-[contenteditable="true"]:focus {
+[contenteditable]:focus {
   outline-color: cornflowerblue;
 }
 .text {
@@ -54,6 +58,11 @@ body {
 center {
   margin: -1.5em 0;
 }
+.center {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
 .word {
   color: var(--word-fg) !important;
   pointer-events: auto !important;
@@ -68,8 +77,10 @@ center {
 
 #tip {
   max-width: 20em;
+  line-height: 1.2;
   position: absolute;
-  left: 0; top: 0;
+  left: 0;
+  top: 0;
   padding: .2em .5em;
   background-color: var(--tip-bg);
   border: 2px solid var(--tip-bdc);
@@ -81,7 +92,7 @@ center {
 #tip:empty {
   display: none;
 }
-#tip > strong {
+.tip-word {
   color: var(--word-fg);
 }
 .notes {
@@ -99,8 +110,119 @@ center {
   margin-left: .5em;
   opacity: .85;
 }
-#tip > strong:empty + span {
+.tip-word:empty + span {
   margin-left: 0;
+}
+
+#prompt-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.5em;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.8em 1.4em;
+  background-color: var(--prompt-bg);
+  border-top: 1px solid gray;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.35);
+}
+#prompt-box > div {
+  min-height: 1.16em;
+}
+#prompt-box > input {
+  font-family: Consolas, monospace;
+  font-size: 0.8em;
+  width: 100%;
+  padding: 0.2em;
+  text-align: center;
+  background: var(--bg);
+  border: 1px solid gray;
+}
+
+nav {
+  min-width: 13em;
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 3em 0 1em;
+  background-color: var(--tip-bg);
+  border-left: 1px solid var(--tip-bdc);
+  overflow: auto;
+  z-index: 5;
+}
+#menu-switcher.__active + nav,
+#menu-switcher.__active ~ #nav-overlay {
+  display: block;
+}
+nav > a {
+  font: inherit;
+  display: block;
+  padding: .3em 1em;
+  color: var(--nav-link-fg);
+  border: 0 solid transparent;
+  border-width: 1px 0;
+  text-decoration: none;
+}
+nav > a:hover,
+nav > a:focus {
+  background: var(--bg);
+  border-color: var(--heading-bdc);
+}
+nav > a.__active::before {
+  content: "•";
+  margin-right: 0.3em;
+}
+
+#nav-overlay {
+  display: none;
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background-color: inherit;
+  opacity: .75;
+  z-index: 4;
+}
+
+#menu-switcher {
+  font-size: 1em;
+  width: 2.4em;
+  height: 2.4em;
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  background-color: var(--nav-btn-bg);
+  border: 1px solid var(--tip-bdc);
+  cursor: pointer;
+  z-index: 6;
+}
+#menu-switcher > i {
+  width: 60%;
+  height: .25em;
+  position: absolute;
+  left: 20%;
+  top: 1.07em;
+  background-color: var(--nav-btn-fg);
+}
+#menu-switcher > i:first-child {
+  top: .55em;
+}
+#menu-switcher > i:last-child {
+  top: 1.6em;
+}
+#menu-switcher.__active > i:first-child,
+#menu-switcher.__active > i:last-child {
+  width: 0;
+  left: 50%;
+  top: 1.07em;
+}
+#menu-switcher.__active > i:nth-child(2) {
+  transform: rotate(45deg);
+}
+#menu-switcher.__active > i:nth-child(3) {
+  transform: rotate(-45deg);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -115,6 +237,10 @@ center {
     --note-fg: #d55038;
     --heading-fg: #e5d2b9;
     --heading-bdc: #3a3a3a;
+    --prompt-bg: #2c2c2c;
+    --nav-link-fg: #c9e2e8;
+    --nav-btn-fg: #eee;
+    --nav-btn-bg: #333;
   }
   b, strong {
     color: #fff;

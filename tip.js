@@ -1,15 +1,9 @@
 (function() {
   'use strict';
 
-  if (location.protocol === 'file:') {
-    const script = document.createElement('script');
-    script.src = 'edit.js';
-    document.head.appendChild(script);
-  }
-
   const getClientWidth = () => document.documentElement.clientWidth;
 
-  const wordReplacer = match => `<strong>${match}</strong>`;
+  const wordReplacer = match => `<strong class="tip-word">${match}</strong>`;
 
   const notesReplacer = match => {
     const notes = match.slice(1).replace(/[(+/)]+/g, '<i>$&</i>');
@@ -56,5 +50,19 @@
     if (text) return tip.render(text).move(trg.getBoundingClientRect());
 
     !tip.hidden && tip.render('');
+  }
+
+  function loadScript(src) {
+    const script = document.createElement('script');
+    script.src = src;
+    document.head.appendChild(script);
+    script.remove();
+  }
+
+  if (location.protocol === 'file:') {
+    window.handleWordValue = handleWordValue;
+    loadScript('edit.js');
+  } else {
+    loadScript('nav.js');
   }
 })();
