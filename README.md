@@ -12,3 +12,4 @@
 [Capitulum 9](https://le-marin.github.io/Oxford-Latin-Course/cap-9.html)  
 [Capitulum 10](https://le-marin.github.io/Oxford-Latin-Course/cap-10.html)  
 [Capitulum 11](https://le-marin.github.io/Oxford-Latin-Course/cap-11.html)  
+[Capitulum 12](https://le-marin.github.io/Oxford-Latin-Course/cap-12.html)  
